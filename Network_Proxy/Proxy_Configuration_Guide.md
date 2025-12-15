@@ -1079,7 +1079,4 @@ fi
 
 ---
 
-**文档版本**：1.0  
-**最后更新**：2024年  
-**维护者**：Network Configuration Team
 
