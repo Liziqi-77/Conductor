@@ -436,3 +436,45 @@ def kv_rmsnorm_rope_cache(
         c_kv_offset is not None,
     )
     return k_cache, ckv_cache
+
+
+# ========== 新增 ModelNew 类，满足平台接口要求 ==========
+class ModelNew:
+    def __init__(self):
+        # 根据平台需要，可以在这里进行必要的初始化
+        pass
+
+    def forward(
+        self,
+        kv: torch.Tensor,
+        gamma: torch.Tensor,
+        cos: torch.Tensor,
+        sin: torch.Tensor,
+        index: torch.Tensor,
+        k_cache: torch.Tensor,
+        ckv_cache: torch.Tensor,
+        k_rope_scale: torch.Tensor = None,
+        c_kv_scale: torch.Tensor = None,
+        k_rope_offset: torch.Tensor = None,
+        c_kv_offset: torch.Tensor = None,
+        epsilon: float = 1e-5,
+        cache_mode: str = "Norm",
+        is_output_kv: bool = False,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """直接调用已有的 kv_rmsnorm_rope_cache 函数"""
+        return kv_rmsnorm_rope_cache(
+            kv,
+            gamma,
+            cos,
+            sin,
+            index,
+            k_cache,
+            ckv_cache,
+            k_rope_scale,
+            c_kv_scale,
+            k_rope_offset,
+            c_kv_offset,
+            epsilon,
+            cache_mode,
+            is_output_kv,
+        )
